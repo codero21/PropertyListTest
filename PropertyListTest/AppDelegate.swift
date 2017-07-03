@@ -12,13 +12,38 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+//        <#code#>
+//    }
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        // Create contacts.plisxt in the documents directory, if it does not exist
+        let fileManager: FileManager = FileManager.default
+        
+        let documentsDirectory: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] as String
+        
+        let plistPath = documentsDirectory + "/contacts.plist"
+        
+        if fileManager.fileExists(atPath: plistPath) == false {
+            let contacts: NSMutableArray = NSMutableArray()
+            contacts.add("Elena")
+            contacts.add("Sonam")
+            contacts.add("Jane")
+            contacts.add("Paul")
+            contacts.add("Abhishek")
+            contacts.add("Nick")
+            contacts.add("Steve")
+            
+            contacts.write(toFile: plistPath, atomically: true)
+        }
+        
         return true
+        
     }
-
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
