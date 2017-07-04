@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     var arrayOfContacts: NSArray? = nil
@@ -21,9 +21,9 @@ class ViewController: UIViewController {
         // Load contacts.plist into arrayOfContacts
         let documentsDirectory: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true) [0] as String
         
-        let plistPath = documentsDirectory + "/contacts.plist"
+        let plistPath2 = documentsDirectory + "/contacts2.plist"
         
-        arrayOfContacts = NSArray(contentsOfFile: plistPath)
+        arrayOfContacts = NSArray(contentsOfFile: plistPath2)
         
     }
 
@@ -32,6 +32,27 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // delegate method
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
+    // datasource method
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (arrayOfContacts?.count)!
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "prototypeCell1", for: indexPath) as UITableViewCell
+        
+        let contactName: String = arrayOfContacts!.object(at: indexPath.row) as! String
+
+        cell.textLabel?.text = contactName
+        
+        return cell
+    }
+    
+    
 }
+
 

@@ -13,20 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-//        <#code#>
-//    }
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         
-        // Create contacts.plisxt in the documents directory, if it does not exist
+        // Create contacts.plist in the documents directory, if it does not exist
         let fileManager: FileManager = FileManager.default
         
         let documentsDirectory: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] as String
         
-        let plistPath = documentsDirectory + "/contacts.plist"
+        let plistPath2 = documentsDirectory + "/contacts2.plist"
         
-        if fileManager.fileExists(atPath: plistPath) == false {
+        if fileManager.fileExists(atPath: plistPath2) == false {
             let contacts: NSMutableArray = NSMutableArray()
             contacts.add("Elena")
             contacts.add("Sonam")
@@ -35,9 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             contacts.add("Abhishek")
             contacts.add("Nick")
             contacts.add("Steve")
+            contacts.add("Rollin")
+            contacts.add("Joshua")
+            contacts.add("Jeremiah")
             
-            contacts.write(toFile: plistPath, atomically: true)
+            contacts.write(toFile: plistPath2, atomically: true)
         }
+        
         
         return true
         
